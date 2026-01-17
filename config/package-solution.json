@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "conflictof-registry-version-2-client-side-solution",
+    "id": "be246933-be2d-495c-a85f-96771612c812",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.20.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "conflictofRegistryVersion2 description"
+      },
+      "longDescription": {
+        "default": "conflictofRegistryVersion2 description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "conflictof-registry-version-2 Feature",
+        "description": "The feature that activates elements of the conflictof-registry-version-2 solution.",
+        "id": "de05c405-fd7f-4347-a536-03a238acca42",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/conflictof-registry-version-2.sppkg"
+  }
+}

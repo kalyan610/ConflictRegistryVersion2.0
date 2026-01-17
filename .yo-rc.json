@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "18.20.8",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.24.0"
+    },
+    "version": "1.20.0",
+    "libraryName": "conflictof-registry-version-2",
+    "libraryId": "be246933-be2d-495c-a85f-96771612c812",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "conflictofRegistryVersion2",
+    "solutionShortDescription": "conflictofRegistryVersion2 description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
