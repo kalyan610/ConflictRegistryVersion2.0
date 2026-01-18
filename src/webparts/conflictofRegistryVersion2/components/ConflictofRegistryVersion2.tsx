@@ -763,7 +763,7 @@ private _onCheckboxBoradofDirectors = async (
       allcorrect='false';
 
 
-          alert('Please slect one')
+          alert('Please select Board of directors')
 
         }
 
