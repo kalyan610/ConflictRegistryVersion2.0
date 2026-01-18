@@ -73,7 +73,9 @@ export interface IConflictRegistrationSubmit
   Position:any;
   details:any;
  
+  
   choiceValues1: string[];
+ 
  
   CompanyTypes:any;
   ComanyFinancialServiceTypes:any;
@@ -86,7 +88,10 @@ export interface IConflictRegistrationSubmit
   MyFinancialServiceText:any;
   MyBoardofDirectorsYesorNo:any;
 
+  MyPaidorUnpaiYesorNo:any;
+
   Myboardofdirecrosboolean:boolean;
+  MyPaidorUnpaidboolean:boolean;
   MyWorkEmploymentboolean:boolean;
 
   StockValue:any;
@@ -109,6 +114,7 @@ export interface IConflictRegistrationSubmit
   choiceValues: string[];
   paidorunpaidCheckboxvalue: string;
   choiceValuesonBoarddirectors: string[];
+  choiceValuesofPaidUnpaid:string[];
   choceValuesonEmployee:string[];
   BoardofDirectorsCheckboxValue: string;
   EmpCheckboxValue:string;
@@ -141,7 +147,8 @@ export default class ConflictRegistrySubmit extends React.Component<IConflictofR
       details:"",
       //choiceValues: [],
       choiceValues1: [],
-      //choiceValuesonBoarddirectors:[],
+      choiceValues:[],
+    
       CompanyTypes:[],
       ComanyFinancialServiceTypes:[],
       MyComanyValue:"",
@@ -151,7 +158,9 @@ export default class ConflictRegistrySubmit extends React.Component<IConflictofR
       MyFinancialService:"",
       MyFinancialServiceText:"",
       MyBoardofDirectorsYesorNo:"",
+      MyPaidorUnpaiYesorNo:"",
       Myboardofdirecrosboolean:false,
+      MyPaidorUnpaidboolean:false,
       MyWorkEmploymentboolean:false,
       StockValue:"",
       insideryesorNo:"",
@@ -168,10 +177,11 @@ export default class ConflictRegistrySubmit extends React.Component<IConflictofR
       MyDornamantKey:"",
       MyDornamantValue:"",
       
-      choiceValues: [],
+      
   paidorunpaidCheckboxvalue: "",
   choceValuesonEmployee:[],
     choiceValuesonBoarddirectors: [],
+    choiceValuesofPaidUnpaid:[],
   BoardofDirectorsCheckboxValue: "",
   EmpCheckboxValue:"",
   EmpCheckboxValue1:"",
@@ -248,12 +258,14 @@ export default class ConflictRegistrySubmit extends React.Component<IConflictofR
     {
 
       this.setState({ MyWorkEmploymentboolean:true})
+      this.setState({ MyPaidorUnpaidboolean:true})
     }
 
     else
     {
 
       this.setState({ MyWorkEmploymentboolean:false})
+      this.setState({ MyPaidorUnpaidboolean:false})
 
     }
 
@@ -281,6 +293,29 @@ export default class ConflictRegistrySubmit extends React.Component<IConflictofR
 
     
   }
+
+
+  //   private handlePaidorUnpaidYesNo(event: React.FormEvent<HTMLDivElement>, item: IDropdownOption): void {
+
+  //   this.setState({ MyPaidorUnpaiYesorNo:item.key });
+
+
+  //   if(item.key=='Yes')
+  //   {
+
+  //     this.setState({ MyPaidorUnpaidboolean:true})
+
+  //   }
+
+  //   else
+  //   {
+
+  //     this.setState({ MyPaidorUnpaidboolean:false})
+
+  //   }
+
+    
+  // }
 
   private handleConflictsYesNo(event: React.FormEvent<HTMLDivElement>, item: IDropdownOption): void {
 
@@ -339,7 +374,7 @@ export default class ConflictRegistrySubmit extends React.Component<IConflictofR
     try {
 
 
-      const choiceValues: string[] = await this.getCheckboxChoices("CLEARANCELIST");
+      const choiceValues: string[] = await this.getCheckboxChoicesPaidUnpaid("CLEARANCELIST");
       const choiceValues1: string[] = await this.getCheckboxChoicesboardofDirectors("BoardDetails");
       
    
@@ -397,7 +432,7 @@ export default class ConflictRegistrySubmit extends React.Component<IConflictofR
 
   }
 
-  public getCheckboxChoices = (fieldname: string): Promise<string[]> => {
+  public getCheckboxChoicesPaidUnpaid = (fieldname: string): Promise<string[]> => {
     return new Promise<string[]>((resolve, reject) => {
       try {
         sp.web.lists.getByTitle("TypesofItems").fields
@@ -440,43 +475,45 @@ export default class ConflictRegistrySubmit extends React.Component<IConflictofR
   }
 
 
-// private _onCheckboxBoradofDirectors1 = async (
-//   ev: React.FormEvent<HTMLElement>,
-//   isChecked?: boolean
-// ): Promise<void> => {
-//   try {
 
-//     const choiceValue =
-//       ev.currentTarget["ariaLabel"] as string | null;
+private _onCheckboxPaidUnpaid = async (
+  ev: React.FormEvent<HTMLElement>,
+  isChecked?: boolean
+): Promise<void> => {
+  try {
 
-//     if (!choiceValue) {
-//       return;
-//     }
+    const choiceValue1 =
+      ev.currentTarget["ariaLabel"] as string | null;
 
-//     let updatedSelectedChoiceValuesOnEmployee: string[] = [
-//       ...this.state.choiceValues
-//     ];
+    if (!choiceValue1) {
+      return;
+    }
 
-//     if (isChecked) {
-//       if (updatedSelectedChoiceValuesOnEmployee.indexOf(choiceValue) === -1) {
-//         updatedSelectedChoiceValuesOnEmployee.push(choiceValue);
-//       }
-//     } else {
-//       updatedSelectedChoiceValuesOnEmployee =
-//         updatedSelectedChoiceValuesOnEmployee.filter(
-//           sc => sc !== choiceValue
-//         );
-//     }
+    let updatedSelectedChoiceValuesPaidorUnpaid: string[] = [
+      ...this.state.choiceValuesofPaidUnpaid
+    ];
 
-//     this.setState({
-//       choceValuesonEmployee: updatedSelectedChoiceValuesOnEmployee,
-//       EmpCheckboxValue:updatedSelectedChoiceValuesOnEmployee.toString()
-//     });
+    if (isChecked) {
+      if (updatedSelectedChoiceValuesPaidorUnpaid.indexOf(choiceValue1) === -1) {
+        updatedSelectedChoiceValuesPaidorUnpaid.push(choiceValue1);
+      }
+    } else {
+      updatedSelectedChoiceValuesPaidorUnpaid =
+        updatedSelectedChoiceValuesPaidorUnpaid.filter(
+          sc => sc !== choiceValue1
+        );
+    }
 
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+    this.setState({
+      choiceValuesofPaidUnpaid: updatedSelectedChoiceValuesPaidorUnpaid,
+      EmpCheckboxValue:
+        updatedSelectedChoiceValuesPaidorUnpaid.toString()
+    });
+
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 
 
@@ -1187,13 +1224,109 @@ private _onCheckboxBoradofDirectors = async (
     if(allcorrect=='true')
     {
 
-      console.log(allcorrect);
 
-      alert('Saved  Data')
-    }
+       let FinaldtInsider='';
 
-  
-  }
+            let FinaldtPublic='';
+
+            if(this.state.dtinsider!="")
+            {
+      
+                  let date1=(this.state.dtinsider.getDate()+1);
+      
+                  console.log(date1);
+                  
+                  let month1= (this.state.dtinsider.getMonth()+1);
+                  
+                  let year1 =(this.state.dtinsider.getFullYear());
+                  
+                  FinaldtInsider=month1+'/'+this.state.dtinsider.getDate() +'/' +year1;
+      
+                  console.log(FinaldtInsider);
+      
+            }
+      
+            if(this.state.dtpublic!="")
+            {
+      
+                 let date2=(this.state.dtpublic.getDate()+1);
+      
+                  console.log(date2);
+                  
+                  let month2= (this.state.dtpublic.getMonth()+1);
+                  
+                  let year2 =(this.state.dtpublic.getFullYear());
+                  
+                  FinaldtPublic=month2+'/'+this.state.dtpublic.getDate() +'/' +year2;
+                  
+      
+            }
+
+
+         this._service.Save1(
+              
+            this.state.Contactname ?? "",
+            this.state.MyBussinessUnitValue,
+            //Outside Work Employment / Activities
+            this.state.MyEmploymentYesNo,
+            this.state.Companyname ?? "",
+            this.state.RegisterNumber?? "",
+            this.state.Position ?? "",
+            this.state.details ?? "",
+            //End
+
+            //Paid to Unpais
+            this.state.EmpCheckboxValue?? "",
+            this.state.MyDornamantValue??"",
+            this.state.MyFinancialServiceText??"",
+            //End
+        
+            //Board of Director 
+            this.state.MyBoardofDirectorsYesorNo?? "",
+            this.state.EmpCheckboxValue1?? "",
+            //END
+
+            //ShareOwnership
+            this.state.StockValue,
+            //End
+
+            
+            //InsiderInformation
+
+            this.state.insideryesorNo,
+            this.state.yourFullName?? "",
+            FinaldtInsider?? "",
+            this.state.clientname?? "",
+            this.state.clientproject?? "",
+            this.state.whomesclated?? "",
+            FinaldtPublic?? "",
+            //End
+
+            //other Conflicts
+            this.state.MyConflictYesNo,
+            this.state.detailsconflict?? "",
+
+            //end
+
+            //Last
+          BussinessValuetext
+
+            //END
+
+
+              ).then(function (data:any)
+              {
+          
+                console.log(data);
+              //window.location.replace(Envval);
+                
+              });
+                  
+          }
+
+
+        }
+ 
        
   
 
@@ -1292,16 +1425,29 @@ private _onCheckboxBoradofDirectors = async (
 
 <div className={styles.Divsection}> 
 <b><label className={styles.labelsFonts}>Paid / Unpaid / Voluntary<label className={styles.recolorss}>*</label></label></b><br/><br/> 
-{/* {this.state.choiceValues.map((choiceValueboardofdirectors1: string) => {
+{/* <Dropdown className={styles.onlyFont}
+  placeholder="Select Yes or No"
+  options={drpYesorNo}
+  styles={dropdownStyles1}
+  selectedKey={this.state.MyPaidorUnpaiYesorNo ? this.state.MyPaidorUnpaiYesorNo : undefined} onChange={this.handlePaidorUnpaidYesNo.bind(this)}/><br></br> */}
+
+ {this.state.MyPaidorUnpaidboolean == true  &&
+
+<div className={styles.Divsection}> 
+
+{this.state.choiceValues.map((choiceValuesofPaidUnpaid: string) => {
 
 
                   return (
                     <div style={{ margin: "2px", padding: "3px" }}>
-                      <Checkbox style={{ margin: "2px", padding: "3px" }} label={choiceValueboardofdirectors1} onChange={this._onCheckboxBoradofDirectors1} />
+                      <Checkbox style={{ margin: "2px", padding: "3px" }} label={choiceValuesofPaidUnpaid} onChange={this._onCheckboxPaidUnpaid} />
                     </div>
                   );
                 }
-                )} */}
+                )}
+</div>
+  
+}
 
 
 </div>

@@ -316,5 +316,120 @@ public async test123():Promise<any>
      }
 
 
+     public async Save1 (
+        YourName:string,
+        MyBussinessUnitVal:string,
+
+        //WorkEmployment
+
+        DoYouwishtoRegisterYesorNo:string,
+        MyCompanyName:string,
+        MyTypeofcompregisternumber:string,
+        MyPosition:string,
+        MyDetails:string,
+         //PaidCheckbox
+         MypaidorUnpaid:string,
+         MyTypeofCompany:string,
+         MyCompanyInvolvedFinancialServices:string,
+         //END
+         //Board
+         MyBoardofDirectoryYesorNo:string,
+         MyBoardofDirectortCheckbox:string,
+         //End
+         MyStockValue:string,
+         
+         //InsiderInformation
+         MyinsideryesorNo:string,
+         MyyourFullName:string,
+         Mydtinsider:string,
+         Myclientname:string,
+         Myclientproject:string,
+         Mywhomesclated:string,
+         Mydtpublic:string,
+         //End
+
+         //Conflict
+        MyConflictYesNo:string,
+        MyDetailsofConflict:string,
+        MyBussinessString:string
+        //End
+
+        
+
+
+      )  {
+
+        let Myval='Completed';
+    
+        try
+        {
+
+         let Varmyval= await sp.web.lists.getByTitle("ConflictRegistrySubmissions").items.add({
+    
+            Name:YourName,
+            BussinessUnitId:MyBussinessUnitVal,
+            DoYouwishtoRegister:DoYouwishtoRegisterYesorNo,
+            CompanyName:MyCompanyName,
+            TypeOfcompany:MyTypeofcompregisternumber,
+            Position:MyPosition,
+            Details:MyDetails,
+            PaidorUnpaid:MypaidorUnpaid,
+            ActiveorDormamantCompany:MyTypeofCompany,
+            CompanyInvolvedFinancialServices:MyCompanyInvolvedFinancialServices,
+            SitonBoardoFDirectors:MyBoardofDirectoryYesorNo,
+            OBoardCapcoClient:MyBoardofDirectortCheckbox,
+            //Shareownership
+            CompanyStock:MyStockValue,
+            //End
+            //InsiderInformation
+
+            InsiderTraderAdded:MyinsideryesorNo,
+            YourFullName:MyyourFullName,
+            SelectDate:Mydtinsider,
+            Clientname:Myclientname,
+            Projectname:Myclientproject,
+            WhomEsclated:Mywhomesclated,
+            Anticpateddate:Mydtpublic,
+            //End
+
+            //Confict
+
+            ConflictofIntrest:MyConflictYesNo,
+            DetailsofConflict:MyDetailsofConflict,
+
+            //End
+
+            //Last
+
+            BussinessValue:MyBussinessString,
+            //End
+
+            Title: "Request Created",
+            
+        }).then (async r => {
+          // this will add an attachment to the item we just created to push t sharepoint list
+    
+          return Myval;
+    
+    
+        })
+    
+    
+        return Varmyval;
+    
+        
+      }
+    
+    
+    
+      catch (error) {
+        console.log(error);
+      }
+    
+    
+      
+     }
+
+
 
 }
