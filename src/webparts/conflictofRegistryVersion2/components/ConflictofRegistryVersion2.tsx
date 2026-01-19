@@ -37,7 +37,7 @@ import Service from './Service1';
 //let EmpCheckboxValue='';
 //let FinalPaidArray='';
 
-//let Envval='';
+let Envval='';
 
 let BussinessValuetext='';
 
@@ -593,7 +593,7 @@ private _onCheckboxBoradofDirectors = async (
 
       AllEnvironments.push({ key: data[k].ID, text: data[k].Title});
 
-      //Envval=data[0].Title;
+      Envval=data[0].Title;
 
       
     }
@@ -1317,8 +1317,9 @@ private _onCheckboxBoradofDirectors = async (
               ).then(function (data:any)
               {
           
-                console.log(data);
-              //window.location.replace(Envval);
+              console.log(data);
+              alert('Record Submitted Succefully');
+              window.location.replace(Envval);
                 
               });
                   
