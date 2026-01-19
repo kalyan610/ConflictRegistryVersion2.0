@@ -1318,7 +1318,7 @@ private _onCheckboxBoradofDirectors = async (
               {
           
               console.log(data);
-              alert('Record Submitted Succefully');
+              alert('Record Submitted Successfully');
               window.location.replace(Envval);
                 
               });
